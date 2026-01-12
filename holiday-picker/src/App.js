@@ -24,7 +24,8 @@ const CLIENT_ID = "72353563798-tla2ojjl5bb584nnkjqktctgvj6kjvg2.apps.googleuserc
 
 // Calendar IDs
 const PUBLIC_CALENDAR_ID = "en.indian#holiday@group.v.calendar.google.com";
-const WORK_CALENDAR_ID = "daya.airody@gmail.com@group.calendar.google.com";
+//const WORK_CALENDAR_ID = "daya.airody@gmail.com@group.calendar.google.com";
+const WORK_CALENDAR_ID = "daya.airody@gmail.com";
 
 const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 
@@ -33,6 +34,7 @@ export default function App() {
   const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  /*
   // Load Google Identity Services script
   useEffect(() => {
     const script = document.createElement("script");
@@ -41,6 +43,7 @@ export default function App() {
     script.defer = true;
     document.body.appendChild(script);
   }, []);
+*/
 
   // Initialize OAuth Token Client
   const initAuth = useCallback(() => {
@@ -106,6 +109,9 @@ export default function App() {
         fetchCalendarEvents(PUBLIC_CALENDAR_ID),
         fetchCalendarEvents(WORK_CALENDAR_ID),
       ]);
+
+      console.log("publicEvents:", publicEvents);
+      console.log("workEvents:", workEvents);
 
       const formatted = [
         ...publicEvents.map((e) => ({
